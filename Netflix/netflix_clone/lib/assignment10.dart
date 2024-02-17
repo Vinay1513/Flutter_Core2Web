@@ -46,7 +46,7 @@ class Assignment10 extends StatelessWidget {
               },
             ),
             ListTile(
-              title: Text('Genres'),
+              title: Text('Favourites'),
               textColor: Colors.white,
               onTap: () {
                 // Implement action when Genres is pressed
