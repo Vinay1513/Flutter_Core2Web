@@ -11,27 +11,6 @@ class Assignment10 extends StatelessWidget {
       appBar: AppBar(
         title: const Text("NETFLIX"),
         backgroundColor: Colors.red,
-        actions: [
-          IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () {
-              // Implement action when search icon is pressed
-            },
-          ),
-          IconButton(
-            icon: Icon(Icons.notifications),
-            onPressed: () {
-              // Implement action when notifications icon is pressed
-            },
-          ),
-          IconButton(
-            icon: Icon(Icons.account_circle),
-            onPressed: () {
-              // Implement action when account icon is pressed
-            },
-          ),
-          // Add more IconButton widgets as needed
-        ],
       ),
       drawer: Drawer(
         backgroundColor: Color.fromARGB(255, 197, 39, 28),
@@ -43,7 +22,7 @@ class Assignment10 extends StatelessWidget {
                 color: Colors.black,
               ),
               child: Text(
-                'Netflix Menu',
+                'MENU',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 24,
@@ -215,6 +194,38 @@ class Assignment10 extends StatelessWidget {
           )
         ],
       )),
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home,
+              color: Colors.black,
+            ),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.search,
+              color: Colors.black,
+            ),
+            label: 'Search',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.download,
+              color: Colors.black,
+            ),
+            label: 'Favorites',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.person,
+              color: Colors.black,
+            ),
+            label: 'Profile',
+          ),
+        ],
+      ),
     );
   }
 }
