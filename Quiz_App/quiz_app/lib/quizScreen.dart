@@ -208,7 +208,7 @@ class _QuizUIState extends State<QuizUI> {
             ),
           ),
         ),
-        backgroundColor: const Color.fromARGB(106, 4, 41, 110),
+        backgroundColor: Color.fromARGB(106, 113, 199, 233),
         body: Column(
           children: [
             const SizedBox(
