@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/homepage.dart';
+import "package:google_fonts/google_fonts.dart";
+import 'package:todo_app/signupUI.dart';
 
 class loginUI extends StatefulWidget {
   const loginUI({super.key});
@@ -17,46 +19,40 @@ class _loginUIState extends State<loginUI> {
     String password = passwordController.text;
 
     if (username == "Vinays" && password == "1234") {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: const Text("Login Successful"),
-            content: Text("Welcome, $username!"),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ToDoApp(username: username),
-                    ),
-                  );
-                },
-                child: const Text("OK"),
-              ),
-            ],
-          );
-        },
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: Colors.green,
+          content: Text(
+            'Logged in successfully!',
+            style: GoogleFonts.quicksand(
+              fontWeight: FontWeight.w700,
+              fontSize: 20,
+            ),
+          ),
+        ),
+      );
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) {
+            usernameController.clear();
+            passwordController.clear();
+            return ToDoApp(username: username);
+          },
+        ),
       );
     } else {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: const Text("Login Failed"),
-            content: const Text("Invalid username or password."),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: const Text("OK"),
-              ),
-            ],
-          );
-        },
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: Colors.red,
+          content: Text(
+            'Invalid credentials',
+            style: GoogleFonts.quicksand(
+              fontWeight: FontWeight.w700,
+              fontSize: 20,
+            ),
+          ),
+        ),
       );
     }
   }
@@ -64,89 +60,68 @@ class _loginUIState extends State<loginUI> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "ToDo - App",
-          style: TextStyle(color: Colors.black),
-        ),
-        backgroundColor: Colors.grey,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(18.0),
-            bottomRight: Radius.circular(18.0),
+        appBar: AppBar(
+          centerTitle: true,
+          title: const Text(
+            "ToDo - App",
+            style: TextStyle(color: Colors.black),
           ),
-        ),
-      ),
-      body: Stack(
-        //fit: StackFit.expand,
-        children: [
-          Container(
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: NetworkImage(
-                  'https://cdn.pixabay.com/photo/2017/04/06/09/26/design-2207760_1280.png',
-                ),
-                fit: BoxFit.cover,
-              ),
+          backgroundColor: const Color.fromRGBO(0, 139, 148, 1),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+              bottom: Radius.circular(20),
             ),
           ),
-          const Positioned(
-            top: 14.0,
-            left: 0.0,
-            right: 0.0,
-            child: Center(
-              child: Text(
-                "Schedule your daily task",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 30,
-                  fontWeight: FontWeight.w400,
-                  fontStyle: FontStyle.normal,
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(80.0),
-            child: Container(
-              padding: const EdgeInsets.all(16.0),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20.0),
-                color: Color.fromARGB(255, 112, 122, 136).withOpacity(0.8),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  TextField(
-                    controller: usernameController,
-                    decoration: InputDecoration(
-                      labelText: "Enter your username",
-                      suffixIcon: const Icon(Icons.verified_user_rounded),
-                      fillColor: const Color.fromARGB(162, 248, 246, 246),
-                      filled: true,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30.0),
-                        borderSide:
-                            const BorderSide(color: Colors.black, width: 2.0),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30.0),
-                        borderSide:
-                            const BorderSide(color: Colors.black, width: 2.0),
-                      ),
-                      contentPadding: const EdgeInsets.all(16.0),
-                      alignLabelWithHint: true,
-                      labelStyle: const TextStyle(color: Colors.black),
-                    ),
-                    textAlign: TextAlign.left,
+        ),
+        body: Stack(
+          //fit: StackFit.expand,
+          children: [
+            Container(
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(
+                    'https://www.shutterstock.com/image-illustration/studio-background-bright-green-gradient-600nw-750570352.jpg',
                   ),
-                  const SizedBox(height: 16),
-                  TextField(
-                    controller: passwordController,
-                    obscureText: true,
-                    decoration: InputDecoration(
-                        labelText: "Password",
-                        suffixIcon: const Icon(Icons.remove_red_eye),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            const Positioned(
+              top: 14.0,
+              left: 0.0,
+              right: 0.0,
+              child: Center(
+                child: Text(
+                  "LOGIN HERE",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 30,
+                    fontWeight: FontWeight.w400,
+                    fontStyle: FontStyle.normal,
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(80.0),
+              child: Container(
+                padding: const EdgeInsets.all(16.0),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20.0),
+                    color: Color.fromARGB(255, 250, 248, 248).withOpacity(0.8),
+                    border: Border.all(
+                      color: Colors.black,
+                      width: 2,
+                    )),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    TextFormField(
+                      controller: usernameController,
+                      decoration: InputDecoration(
+                        label: const Text("USERNAME"),
+                        hintText: "Enter your username",
+                        prefixIcon: const Icon(Icons.verified_user_rounded),
                         fillColor: const Color.fromARGB(162, 248, 246, 246),
                         filled: true,
                         border: OutlineInputBorder(
@@ -161,35 +136,110 @@ class _loginUIState extends State<loginUI> {
                         ),
                         contentPadding: const EdgeInsets.all(16.0),
                         alignLabelWithHint: true,
-                        labelStyle: const TextStyle(color: Colors.black)),
-                    textAlign: TextAlign.left,
-                  ),
-                  const SizedBox(height: 40),
-                  ElevatedButton(
-                    onPressed: () => _checkLogin(context),
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0),
+                        labelStyle: const TextStyle(color: Colors.black),
                       ),
-                      backgroundColor: Color.fromARGB(255, 6, 49, 165),
-                      minimumSize: const Size(200, 50),
-                      maximumSize: const Size(400, 70),
+                      textAlign: TextAlign.left,
+                      validator: (value) {
+                        if (value == null || value.trim().isEmpty) {
+                          return 'Enter valid username';
+                        }
+                        return null;
+                      },
                     ),
-                    child: const Text(
-                      "Login",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
+                    const SizedBox(height: 16),
+                    TextFormField(
+                      controller: passwordController,
+                      obscureText: true,
+                      decoration: InputDecoration(
+                          labelText: "Password",
+                          prefixIcon: const Icon(Icons.remove_red_eye),
+                          fillColor: const Color.fromARGB(162, 248, 246, 246),
+                          filled: true,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30.0),
+                            borderSide: const BorderSide(
+                                color: Colors.black, width: 2.0),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30.0),
+                            borderSide: const BorderSide(
+                                color: Colors.black, width: 2.0),
+                          ),
+                          contentPadding: const EdgeInsets.all(16.0),
+                          alignLabelWithHint: true,
+                          labelStyle: const TextStyle(color: Colors.black)),
+                      textAlign: TextAlign.left,
+                      validator: (value) {
+                        if (value == null || value.trim().isEmpty) {
+                          return 'Enter valid Password';
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(height: 40),
+                    ElevatedButton(
+                      onPressed: () => _checkLogin(context),
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.0),
+                        ),
+                        backgroundColor: const Color.fromRGBO(0, 139, 148, 1),
+                        minimumSize: const Size(200, 50),
+                        maximumSize: const Size(400, 70),
+                      ),
+                      child: const Text(
+                        "Login",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                    const SizedBox(
+                      height: 50,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8.0),
+                          child: Text(
+                            "Don't have an account!",
+                            style: GoogleFonts.quicksand(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 18,
+                                color: Colors.blue),
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) {
+                                return Signup();
+                              }),
+                            );
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 8.0),
+                            child: Text(
+                              "Sign Up",
+                              style: GoogleFonts.quicksand(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 18,
+                                color: Colors.blue,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
-      ),
-    );
+          ],
+        ));
   }
 }
