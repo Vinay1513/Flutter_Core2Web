@@ -193,8 +193,8 @@ class _ToDoAppState extends State<ToDoApp> {
   var listofColors = [
     const Color.fromRGBO(250, 232, 232, 1),
     const Color.fromRGBO(232, 237, 250, 1),
-    const Color.fromRGBO(250, 249, 232, 1),
-    const Color.fromRGBO(250, 232, 250, 1),
+    Color.fromARGB(255, 231, 230, 199),
+    Color.fromARGB(255, 204, 182, 204),
   ];
 
   List<ToDoModelClass> todoList = [
@@ -262,9 +262,10 @@ class _ToDoAppState extends State<ToDoApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 122, 221, 143),
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
-        backgroundColor: Color.fromRGBO(2, 167, 177, 1),
+        backgroundColor: const Color.fromRGBO(2, 167, 177, 1),
         centerTitle: true,
         title: Text(
           "TO-DO APP",
@@ -288,8 +289,8 @@ class _ToDoAppState extends State<ToDoApp> {
                   boxShadow: const [
                     BoxShadow(
                       offset: Offset(0, 10),
-                      color: Color.fromRGBO(0, 0, 0, 0.1),
-                      blurRadius: 10,
+                      color: Color.fromARGB(255, 6, 119, 184),
+                      blurRadius: 20,
                     )
                   ],
                   borderRadius: BorderRadius.circular(10),
@@ -303,7 +304,7 @@ class _ToDoAppState extends State<ToDoApp> {
                           Container(
                             height: 70,
                             width: 70,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               color: Colors.white,
                               shape: BoxShape.circle,
                             ),
@@ -311,7 +312,7 @@ class _ToDoAppState extends State<ToDoApp> {
                                 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxdUBaLuNBb50tt_Y7dykJkX_Bd7ikG9Slufg3NZ3Sv4zmhmvYk0NoSP9S9_XMTtqG6a8&usqp=CAU'),
                           ),
                           const SizedBox(
-                            width: 10,
+                            width: 20,
                           ),
                           Expanded(
                             child: Column(
@@ -328,7 +329,7 @@ class _ToDoAppState extends State<ToDoApp> {
                                   height: 10,
                                 ),
                                 Text(
-                                  todoList[index].title,
+                                  todoList[index].description,
                                   style: GoogleFonts.quicksand(
                                       fontWeight: FontWeight.w600,
                                       fontSize: 15,

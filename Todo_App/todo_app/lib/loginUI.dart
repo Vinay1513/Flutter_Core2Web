@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:todo_app/homepage.dart';
-import "package:google_fonts/google_fonts.dart";
 import 'package:todo_app/signupUI.dart';
 
+// ignore: camel_case_types
 class loginUI extends StatefulWidget {
   const loginUI({super.key});
 
@@ -11,77 +12,46 @@ class loginUI extends StatefulWidget {
 }
 
 class _loginUIState extends State<loginUI> {
+  List<Map<String, String>> auth = [
+    {"username": "Vinays", "password": "Vinay123"},
+    {"username": "Shashi", "password": "Shashi123"},
+    {"username": "Akshay", "password": "Akshay123"},
+  ];
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  void _checkLogin(BuildContext context) {
-    String username = usernameController.text;
-    String password = passwordController.text;
-
-    if (username == "Vinays" && password == "1234") {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          backgroundColor: Colors.green,
-          content: Text(
-            'Logged in successfully!',
-            style: GoogleFonts.quicksand(
-              fontWeight: FontWeight.w700,
-              fontSize: 20,
-            ),
-          ),
-        ),
-      );
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) {
-            usernameController.clear();
-            passwordController.clear();
-            return ToDoApp(username: username);
-          },
-        ),
-      );
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          backgroundColor: Colors.red,
-          content: Text(
-            'Invalid credentials',
-            style: GoogleFonts.quicksand(
-              fontWeight: FontWeight.w700,
-              fontSize: 20,
-            ),
-          ),
-        ),
-      );
-    }
+  final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
+  bool showpass = true;
+  Icon toggleicon() {
+    return Icon(
+        showpass ? Icons.remove_red_eye_outlined : Icons.remove_red_eye);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: const Text(
-            "ToDo - App",
-            style: TextStyle(color: Colors.black),
-          ),
-          backgroundColor: const Color.fromRGBO(0, 139, 148, 1),
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(
-              bottom: Radius.circular(20),
-            ),
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text(
+          "ToDo - App",
+          style: TextStyle(color: Colors.black),
+        ),
+        backgroundColor: const Color.fromRGBO(0, 139, 148, 1),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(20),
           ),
         ),
-        body: Stack(
-          //fit: StackFit.expand,
+      ),
+      body: Form(
+        key: _formkey,
+        child: Stack(
           children: [
             Container(
               decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: NetworkImage(
-                    'https://www.shutterstock.com/image-illustration/studio-background-bright-green-gradient-600nw-750570352.jpg',
-                  ),
+                      'https://www.shutterstock.com/image-illustration/studio-background-bright-green-gradient-600nw-750570352.jpg'),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -92,7 +62,7 @@ class _loginUIState extends State<loginUI> {
               right: 0.0,
               child: Center(
                 child: Text(
-                  "LOGIN HERE",
+                  "SIGN IN",
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 30,
@@ -107,19 +77,27 @@ class _loginUIState extends State<loginUI> {
               child: Container(
                 padding: const EdgeInsets.all(16.0),
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20.0),
-                    color: Color.fromARGB(255, 250, 248, 248).withOpacity(0.8),
-                    border: Border.all(
-                      color: Colors.black,
-                      width: 2,
-                    )),
+                  borderRadius: BorderRadius.circular(20.0),
+                  color:
+                      const Color.fromARGB(255, 250, 248, 248).withOpacity(0.8),
+                  border: Border.all(
+                    color: Colors.black,
+                    width: 2,
+                  ),
+                ),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
+                    Image.network(
+                      'https://png.pngtree.com/png-clipart/20191121/original/pngtree-user-login-or-authenticate-icon-on-gray-background-flat-icon-ve-png-image_5089976.jpg',
+                      height: 100,
+                      width: 100,
+                    ),
+                    const SizedBox(height: 20),
                     TextFormField(
                       controller: usernameController,
                       decoration: InputDecoration(
-                        label: const Text("USERNAME"),
+                        labelText: "USERNAME",
                         hintText: "Enter your username",
                         prefixIcon: const Icon(Icons.verified_user_rounded),
                         fillColor: const Color.fromARGB(162, 248, 246, 246),
@@ -149,25 +127,33 @@ class _loginUIState extends State<loginUI> {
                     const SizedBox(height: 16),
                     TextFormField(
                       controller: passwordController,
-                      obscureText: true,
+                      obscureText: showpass,
                       decoration: InputDecoration(
-                          labelText: "Password",
-                          prefixIcon: const Icon(Icons.remove_red_eye),
-                          fillColor: const Color.fromARGB(162, 248, 246, 246),
-                          filled: true,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(30.0),
-                            borderSide: const BorderSide(
-                                color: Colors.black, width: 2.0),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(30.0),
-                            borderSide: const BorderSide(
-                                color: Colors.black, width: 2.0),
-                          ),
-                          contentPadding: const EdgeInsets.all(16.0),
-                          alignLabelWithHint: true,
-                          labelStyle: const TextStyle(color: Colors.black)),
+                        labelText: "PASSWORD",
+                        prefixIcon: IconButton(
+                          icon: toggleicon(),
+                          onPressed: () {
+                            setState(() {
+                              showpass = !showpass;
+                            });
+                          },
+                        ),
+                        fillColor: const Color.fromARGB(162, 248, 246, 246),
+                        filled: true,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30.0),
+                          borderSide:
+                              const BorderSide(color: Colors.black, width: 2.0),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30.0),
+                          borderSide:
+                              const BorderSide(color: Colors.black, width: 2.0),
+                        ),
+                        contentPadding: const EdgeInsets.all(16.0),
+                        alignLabelWithHint: true,
+                        labelStyle: const TextStyle(color: Colors.black),
+                      ),
                       textAlign: TextAlign.left,
                       validator: (value) {
                         if (value == null || value.trim().isEmpty) {
@@ -178,7 +164,48 @@ class _loginUIState extends State<loginUI> {
                     ),
                     const SizedBox(height: 40),
                     ElevatedButton(
-                      onPressed: () => _checkLogin(context),
+                      onPressed: () {
+                        bool loginvalidate = _formkey.currentState!.validate();
+                        bool isAuthenticate = false;
+                        for (var i in auth) {
+                          if (loginvalidate &&
+                              i['username'] == usernameController.text &&
+                              i['password'] == passwordController.text) {
+                            isAuthenticate = true;
+                            break;
+                          }
+                        }
+                        if (isAuthenticate) {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ToDoApp(
+                                username: '$usernameController',
+                              ),
+                            ),
+                          );
+
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                                content: Text(
+                              "Login Successful",
+                              style:
+                                  TextStyle(color: Colors.green, fontSize: 20),
+                            )),
+                          );
+                        } else {
+                          Future.delayed(const Duration(seconds: 1), () {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                  content: Text(
+                                "Login Failed",
+                                style:
+                                    TextStyle(color: Colors.red, fontSize: 20),
+                              )),
+                            );
+                          });
+                        }
+                      },
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30.0),
@@ -217,12 +244,12 @@ class _loginUIState extends State<loginUI> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) {
-                                return Signup();
+                                return const Signup();
                               }),
                             );
                           },
                           child: Padding(
-                            padding: const EdgeInsets.only(top: 8.0),
+                            padding: const EdgeInsets.only(top: 8.0, left: 8.0),
                             child: Text(
                               "Sign Up",
                               style: GoogleFonts.quicksand(
@@ -240,6 +267,8 @@ class _loginUIState extends State<loginUI> {
               ),
             ),
           ],
-        ));
+        ),
+      ),
+    );
   }
 }
