@@ -262,7 +262,7 @@ class _ToDoAppState extends State<ToDoApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 122, 221, 143),
+      backgroundColor: Color.fromARGB(255, 5, 187, 132),
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
         backgroundColor: const Color.fromRGBO(2, 167, 177, 1),
@@ -301,15 +301,17 @@ class _ToDoAppState extends State<ToDoApp> {
                     children: [
                       Row(
                         children: [
-                          Container(
-                            height: 70,
-                            width: 70,
-                            decoration: const BoxDecoration(
-                              color: Colors.white,
-                              shape: BoxShape.circle,
+                          CircleAvatar(
+                            radius: 35,
+                            backgroundColor: Colors.white,
+                            child: ClipOval(
+                              child: Image.network(
+                                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxdUBaLuNBb50tt_Y7dykJkX_Bd7ikG9Slufg3NZ3Sv4zmhmvYk0NoSP9S9_XMTtqG6a8&usqp=CAU',
+                                fit: BoxFit.cover,
+                                width: 70,
+                                height: 70,
+                              ),
                             ),
-                            child: Image.network(
-                                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxdUBaLuNBb50tt_Y7dykJkX_Bd7ikG9Slufg3NZ3Sv4zmhmvYk0NoSP9S9_XMTtqG6a8&usqp=CAU'),
                           ),
                           const SizedBox(
                             width: 20,
