@@ -11,7 +11,10 @@ class _gridviewpageState extends State<gridviewpage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("hello")),
+      appBar: AppBar(
+        title: Text("hello"),
+        centerTitle: true,
+      ),
       body: GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
