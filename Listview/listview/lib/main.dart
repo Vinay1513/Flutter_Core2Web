@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:listview/player.dart';
+import 'package:listview/drawer.dart';
+//import 'package:listview/gridpage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,9 +12,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      title: 'List View ',
+      title: 'Gridview ',
       debugShowCheckedModeBanner: false,
-      home: CricketplayerInfo(),
+      home: drawerpage(),
     );
   }
 }
