@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:listview/drawer.dart';
-//import 'package:listview/gridpage.dart';
+//import 'package:listview/drawer.dart';
+import 'package:listview/gridpage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       title: 'Gridview ',
       debugShowCheckedModeBanner: false,
-      home: drawerpage(),
+      home: gridviewpage(),
     );
   }
 }

@@ -204,8 +204,13 @@ class _ToDoAppState extends State<ToDoApp> {
       date: "10 July 2023",
     ),
     ToDoModelClass(
-      title: "Arrange Marriage",
+      title: "Springboot project",
       description: "Meet the backend team",
+      date: "10 July 2023",
+    ),
+    ToDoModelClass(
+      title: "Python Ai model",
+      description: "Discussion on new technology",
       date: "10 July 2023",
     ),
   ];
@@ -406,10 +411,4 @@ class _ToDoAppState extends State<ToDoApp> {
       ),
     );
   }
-}
-
-void main() {
-  runApp(MaterialApp(
-    home: ToDoApp(username: 'your_username'),
-  ));
 }

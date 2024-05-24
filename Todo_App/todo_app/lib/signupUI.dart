@@ -65,10 +65,12 @@ class _SignupState extends State<Signup> {
                       borderRadius: BorderRadius.circular(20.0),
                       color: const Color.fromARGB(255, 250, 248, 248)
                           .withOpacity(0.8),
-                      border: Border.all(
-                        color: Colors.black,
-                        width: 2,
-                      ),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Color.fromARGB(255, 10, 177, 96),
+                          blurRadius: 30,
+                        ),
+                      ],
                     ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
