@@ -1,4 +1,29 @@
-import 'dart:developer';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'controllers/count_controller.dart';
+import 'package:state_management/view/login.dart';
+
+
+
+void main() {
+  Get.put(AuthController());
+  Get.put(CountController());
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return GetMaterialApp(
+      home: LoginScreen(),
+    );
+  }
+}
+
+
+
+
+/*import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -38,7 +63,7 @@ class MyApp extends StatelessWidget {
           const MaterialApp(debugShowCheckedModeBanner: false, home: MainApp()),
     );
   }
-}
+}*/
  
  /*import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

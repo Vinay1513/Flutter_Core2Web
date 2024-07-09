@@ -26,7 +26,6 @@ class _ViewEmployeeState extends State<ViewEmployee> {
           itemCount: empData.length,
           itemBuilder: (context, index) {
             return Container(
-             
               child: Row(
                 children: [
                   Text(empData[index]['employee_name']),
@@ -37,19 +36,20 @@ class _ViewEmployeeState extends State<ViewEmployee> {
             );
           }),
       floatingActionButton: FloatingActionButton(
-        onPressed: getEmployeeData,
+        onPressed: postEmployeeData,
         child: const Icon(Icons.add),
       ),
     );
   }
 
-  void getEmployeeData() async {
-    Uri url = Uri.parse('https://dummy.restapiexample.com/api/v1/employees');
-    http.Response response = await http.get(url);
+  void postEmployeeData() async {
+    Uri url = Uri.parse('https://dummy.restapiexample.com/api/v1/update/21');
+    Map<String, String> mapData = {
+      "name": "Vinay",
+      "salary": "200000",
+      "age": "23"
+    };
+    http.Response response = await http.post(url, body: mapData);
     log(response.body);
-    var resposeData = json.decode(response.body);
-    setState(() {
-      empData = resposeData['data'];
-    });
   }
 }
